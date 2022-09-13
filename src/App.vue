@@ -2,9 +2,9 @@
 <main>
   <div class="container">
     <h1>To DO LIST</h1>
-    <TodoAdd></TodoAdd>
-    <TodoFilter></TodoFilter>
-    <TodoList></TodoList>
+    <todo-add :tid="todos.length" @add-todo="addTodo"/>
+    <todo-filter :selected="filter" @change-filter="filter = $event"/>
+    <todo-list :todos="filteredTodos"/>
   </div>
 </main>
 </template>
@@ -13,6 +13,12 @@
 import TodoAdd from './components/TodoAdd.vue'
 import TodoFilter from './components/TodoFilter.vue'
 import TodoList from './components/TodoList.vue'
+import useTodos from '@/hooks/useTodos'
+import useFilteredTodos from '@/hooks/useFilteredTodos'
+
+
+const { todos, addTodo } = useTodos()
+const { filter, filteredTodos } = useFilteredTodos(todos)
 
 
 </script>
